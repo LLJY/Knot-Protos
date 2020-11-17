@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option csharp_namespace = "ChatService.Protos";
+
+package services;
+
+service Chat{
+  rpc GetUserEvents (UserEventsRequest) returns (stream UserEventsResponse);
+  rpc GetNewMessages (NewMessagesRequest) returns (NewMessagesResponse);
+  rpc GetAllMessages (AllMessagesRequest) returns (AllMessagesResponse);
+}
+// gRPC stream that gives all message requests when sent.
+message UserEventsRequest{
+  string userid = 1;
+}
+enum EventType{
+  MESSAGE_RECEIVED = 0;
+  GROUP_CREATED = 1;
+  CONTACT_JOINED = 2;
+}
+message UserEventsResponse{
+  EventType eventType = 1;
+  Message message = 2;
+  uint32 groupId = 3;
+}
+// get all the new messages, useful on start of application
+message NewMessagesRequest{
+  string userid = 1;
+}
+message NewMessagesResponse{
+  repeated Message message = 1;
+}
+// get ALL the user's messages, useful when app is first installed
+message AllMessagesRequest{
+  string userid = 1;
+}
+message AllMessagesResponse{
+  repeated Message message = 1;
+}
+message Message{
+  string id = 1;
+  string authorId = 2;
+  // will be non null if the message is a reply.
+  string replyId = 3;
+  // will be non null if is a media, use this to check the type of media as well.
+  string mimeType = 4;
+  // if the message is a forwarded message
+  bool isForward = 5;
+  // 0 = Sent, 1 = Received, 2 = Read 
+  uint32 messageStatus = 6;
+  int64 datePostedUnixTimestamp = 7;
+  // id of the group
+  string groupId = 8;
+}

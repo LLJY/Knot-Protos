@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "NotificationService.Protos";
+
+package services;
+
+// notification will use firebase admin to send a notification, this allows us to send notification from anywhere using userid as reference, without using the deprecated C2DM API
+service Notification{
+  // sends notification by userid
+  rpc SendNotificationByUserId (UserIdNotificationRequest) returns (UserIdNotificationResponse);
+  // sends notification by topic
+  rpc SendNotificationByTopic (TopicNotificationRequest) returns (TopicNotificationResponse);
+  // sends notification by notification token
+  rpc SendNotificationByToken (TokenNotificationRequest) returns (TokenNotificationResponse);
+}
+message UserIdNotificationRequest{
+  string userid = 1;
+  string title = 2;
+  string message = 3;
+}
+message UserIdNotificationResponse{
+  string errorMessage = 1;
+  bool isSuccessful = 2;
+}
+message TopicNotificationRequest{
+  string topic = 1;
+  string title = 2;
+  string message = 3;
+}
+message TopicNotificationResponse{
+  string errorMessage = 1;
+  bool isSuccessful = 2;
+}
+message TokenNotificationRequest{
+  string topic = 1;
+  string title = 2;
+  string message = 3;
+}
+message TokenNotificationResponse{
+  string errorMessage = 1;
+  bool isSuccessful = 2;
+}

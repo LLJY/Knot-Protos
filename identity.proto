@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option csharp_namespace = "IdentityService.Protos";
+
+package services;
+
+// for login and signup, provides login token.
+service Identity {
+  // we only identify by phone number, so this is our login function
+  rpc RequestOTP (OTPRequest) returns (OTPResponse);
+  rpc VerifyOTP (VerifyOTPRequest) returns (VerifyOTPResponse);
+  rpc UserSignUpListener (UserSignUpListenerRequest) returns (stream UserSignUpEvent);
+  rpc VerifyToken (VerifyTokenRequest) returns (VerifyTokenResponse);
+}
+message VerifyTokenResponse{
+  bool success = 1;
+}
+message VerifyTokenRequest{
+  string a = 1;
+}
+message OTPRequest{
+  string phoneNumber = 1;
+}
+message OTPResponse{
+  bool isSuccessful = 1;
+  string errorMessage = 2;
+  // if time left > 0 the user is restricted from requesting OTP for an amount of time
+  uint32 timeLeft=3;
+}
+message VerifyOTPRequest{
+  string phoneNumber = 1;
+  string otp = 2;
+}
+message VerifyOTPResponse{
+  bool isSuccessful = 1;
+  // number of attempts left before lockdown
+  uint32 numTries = 2;
+  // give our firebase token as a response
+  string token = 3;
+  // if sign up, do some more setup procedures
+  bool isSignUp = 4;
+}
+  //  grpcurl -insecure -use-reflection localhost:5001 services.Identity/VerifyToken
+
+message UserSignUpListenerRequest{
+}
+message UserSignUpEvent{
+  string userid = 1;
+  string phoneNumber = 2;
+}
+
+message ServerStatusRequest{
+}
+message ServerStatusResponse{
+  //TODO
+}
