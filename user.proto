@@ -25,9 +25,10 @@ message GetUserInfoResponse{
 // executed right after sign up/OTP, allows the user to setup more details like BIO and profile picture, also users can make use of this when updating profiles
 message UpdateProfileRequest{
   // image encoded in base64 for easy transmission
-  string profilePictureUri = 1;
-  string bio = 2;
-  string username = 3;
+  string userid = 1;
+  string profilePictureUri = 2;
+  string bio = 3;
+  string username = 4;
 }
 
 message UpdateProfileResponse{
