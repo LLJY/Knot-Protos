@@ -12,6 +12,16 @@ service Notification{
   rpc SendNotificationByTopic (TopicNotificationRequest) returns (TopicNotificationResponse);
   // sends notification by notification token
   rpc SendNotificationByToken (TokenNotificationRequest) returns (TokenNotificationResponse);
+  // updates or sets user token.
+  rpc UpdateUserToken (UpdateUserTokenRequest) returns (UpdateUserTokenResponse);
+}
+message UpdateUserTokenRequest{
+  string userid = 1;
+  string token = 2;
+}
+message UpdateUserTokenResponse{
+  string errorMessage = 1;
+  bool isSuccessful = 2;
 }
 message UserIdNotificationRequest{
   string userid = 1;
