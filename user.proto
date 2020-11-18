@@ -4,9 +4,11 @@ option csharp_namespace = "IdentityService.Protos";
 
 package services;
 
-// The greeting service definition.
+// User service definition
 service User {
+  // get individual user info
   rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoResponse);
+    // executed right after sign up/OTP, allows the user to setup more details like BIO and profile picture, also users can make use of this when updating profiles
   rpc UpdateProfile (UpdateProfileRequest) returns (UpdateProfileResponse);
 }
 
@@ -14,7 +16,6 @@ message GetUserInfoRequest{
   string userid = 1;
 }
 
-// get individual user info
 message GetUserInfoResponse{
   string userid = 1;
   string phoneNumber = 2;
@@ -22,10 +23,9 @@ message GetUserInfoResponse{
   string bio = 4;
 }
 
-// executed right after sign up/OTP, allows the user to setup more details like BIO and profile picture, also users can make use of this when updating profiles
 message UpdateProfileRequest{
-  // image encoded in base64 for easy transmission
   string userid = 1;
+  // link to where the profile picture is stored, should be firebase storage
   string profilePictureUri = 2;
   string bio = 3;
   string username = 4;
