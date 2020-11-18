@@ -13,6 +13,7 @@ service User {
 message GetUserInfoRequest{
   string userid = 1;
 }
+
 // get individual user info
 message GetUserInfoResponse{
   string userid = 1;
@@ -20,13 +21,15 @@ message GetUserInfoResponse{
   string userName = 3;
   string bio = 4;
 }
+
 // executed right after sign up/OTP, allows the user to setup more details like BIO and profile picture, also users can make use of this when updating profiles
 message UpdateProfileRequest{
   // image encoded in base64 for easy transmission
-  string ProfilePictureBase64 = 1;
+  string profilePictureUri = 1;
   string bio = 2;
   string username = 3;
 }
+
 message UpdateProfileResponse{
   string errorMessage = 1;
   bool isSuccessful = 2;
