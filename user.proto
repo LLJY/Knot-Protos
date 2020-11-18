@@ -21,6 +21,8 @@ message GetUserInfoResponse{
   string phoneNumber = 2;
   string userName = 3;
   string bio = 4;
+  // if user does not exist (userid returns null)
+  bool isExists = 5;
 }
 
 message UpdateProfileRequest{
@@ -29,6 +31,7 @@ message UpdateProfileRequest{
   string profilePictureUri = 2;
   string bio = 3;
   string username = 4;
+  string phoneNumber = 5;
 }
 
 message UpdateProfileResponse{
