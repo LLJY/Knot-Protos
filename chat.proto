@@ -5,8 +5,10 @@ option csharp_namespace = "ChatService.Protos";
 package services;
 
 service Chat{
-  rpc GetUserEvents (UserEventsRequest) returns (stream UserEventsResponse);
-  rpc GetNewMessages (NewMessagesRequest) returns (NewMessagesResponse);
+  // bi-directional streaming for users to have realtime chat with each other
+  rpc ChatStream (stream Message) returns (stream Message);
+  // get the messages that are unread.
+  rpc GetUnreadMessages (NewMessagesRequest) returns (NewMessagesResponse);
   rpc GetAllMessages (AllMessagesRequest) returns (AllMessagesResponse);
 }
 // gRPC stream that gives all message requests when sent.
@@ -39,16 +41,18 @@ message AllMessagesResponse{
 }
 message Message{
   string id = 1;
-  string authorId = 2;
+  // id of the user that recieves the message, null if group
+  string userid = 2;
+  string authorId = 3;
   // will be non null if the message is a reply.
-  string replyId = 3;
+  string replyId = 4;
   // will be non null if is a media, use this to check the type of media as well.
-  string mimeType = 4;
+  string mimeType = 5;
   // if the message is a forwarded message
-  bool isForward = 5;
+  bool isForward = 6;
   // 0 = Sent, 1 = Received, 2 = Read 
-  uint32 messageStatus = 6;
-  int64 datePostedUnixTimestamp = 7;
-  // id of the group
-  string groupId = 8;
+  uint32 messageStatus = 7;
+  int64 datePostedUnixTimestamp = 8;
+  // id of the group, null if sent to user
+  string groupId = 9;
 }
