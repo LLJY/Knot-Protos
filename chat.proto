@@ -42,7 +42,7 @@ message AllMessagesResponse{
 message Message{
   string id = 1;
   // id of the user that recieves the message, null if group
-  string userid = 2;
+  string recieverUserId = 2;
   string authorId = 3;
   // will be non null if the message is a reply.
   string replyId = 4;
@@ -55,4 +55,6 @@ message Message{
   int64 datePostedUnixTimestamp = 8;
   // id of the group, null if sent to user
   string groupId = 9;
+  // if this is an initial message
+  bool isInit = 10;
 }
