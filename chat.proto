@@ -6,7 +6,7 @@ package services;
 
 service Chat{
   // bi-directional streaming for users to have realtime chat with each other
-  rpc EventStream (stream Message) returns (stream Message);
+  rpc EventStream (stream Event) returns (stream Event);
   // get the messages that are unread.
   rpc GetUnreadMessages (NewMessagesRequest) returns (NewMessagesResponse);
   rpc GetAllMessages (AllMessagesRequest) returns (AllMessagesResponse);
