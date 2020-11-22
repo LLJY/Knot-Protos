@@ -73,4 +73,5 @@ message GroupCreated{
   int64 datePostedUnixTimestamp = 8;
   // id of the group, null if sent to user
   string groupId = 9;
+  repeated string userIds = 10;
 }
