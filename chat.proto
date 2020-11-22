@@ -70,6 +70,7 @@ message Message{
 message Media{
   string mimeType = 1;
   string mediaUrl = 2;
+  uint64 sizeBytes = 3;
 }
 message GroupCreated{
   string id = 1;
