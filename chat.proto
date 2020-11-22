@@ -6,7 +6,7 @@ package services;
 
 service Chat{
   // bi-directional streaming for users to have realtime chat with each other
-  rpc ChatStream (stream Message) returns (stream Message);
+  rpc EventStream (stream Message) returns (stream Message);
   // get the messages that are unread.
   rpc GetUnreadMessages (NewMessagesRequest) returns (NewMessagesResponse);
   rpc GetAllMessages (AllMessagesRequest) returns (AllMessagesResponse);
@@ -39,10 +39,15 @@ message AllMessagesRequest{
 message AllMessagesResponse{
   repeated Message message = 1;
 }
+message Event{
+  Message message = 1;
+  GroupCreated groupCreated = 2;
+
+}
 message Message{
   string id = 1;
   // id of the user that recieves the message, null if group
-  string recieverUserId = 2;
+  string receiverUserId = 2;
   string authorId = 3;
   // will be non null if the message is a reply.
   string replyId = 4;
@@ -55,6 +60,17 @@ message Message{
   int64 datePostedUnixTimestamp = 8;
   // id of the group, null if sent to user
   string groupId = 9;
-  // if this is an initial message
-  bool isInit = 10;
+  // message, if null, contact joined
+  string message = 10;
+}
+message GroupCreated{
+  string id = 1;
+  // id of the user that recieves the message, null if group
+  string receiverUserId = 2;
+  // the dude who added you
+  string authorId = 3;
+  // the time of the message
+  int64 datePostedUnixTimestamp = 8;
+  // id of the group, null if sent to user
+  string groupId = 9;
 }
