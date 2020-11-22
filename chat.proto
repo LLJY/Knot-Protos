@@ -56,7 +56,7 @@ message Message{
   // will be non null if the message is a reply.
   string replyId = 4;
   // will be non null if is a media, use this to check the type of media as well.
-  string mimeType = 5;
+  Media media = 5;
   // if the message is a forwarded message
   bool isForward = 6;
   // 0 = Sent, 1 = Received, 2 = Read 
@@ -66,6 +66,10 @@ message Message{
   string groupId = 9;
   // message, if null, contact joined
   string message = 10;
+}
+message Media{
+  string mimeType = 1;
+  string mediaUrl = 2;
 }
 message GroupCreated{
   string id = 1;
