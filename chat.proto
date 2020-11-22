@@ -42,13 +42,17 @@ message AllMessagesResponse{
 message Event{
   Message message = 1;
   GroupCreated groupCreated = 2;
-
+  SenderInfo senderInfo = 3;
+}
+message SenderInfo{
+  // the dude who sent the message
+  string userid = 1;
+  bool isInit =2;
 }
 message Message{
   string id = 1;
   // id of the user that recieves the message, null if group
   string receiverUserId = 2;
-  string authorId = 3;
   // will be non null if the message is a reply.
   string replyId = 4;
   // will be non null if is a media, use this to check the type of media as well.
@@ -67,8 +71,6 @@ message GroupCreated{
   string id = 1;
   // id of the user that recieves the message, null if group
   string receiverUserId = 2;
-  // the dude who added you
-  string authorId = 3;
   // the time of the message
   int64 datePostedUnixTimestamp = 8;
   // id of the group, null if sent to user
