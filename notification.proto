@@ -42,7 +42,7 @@ message TopicNotificationResponse{
   bool isSuccessful = 2;
 }
 message TokenNotificationRequest{
-  string topic = 1;
+  string token = 1;
   string title = 2;
   string message = 3;
 }
