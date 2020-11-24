@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-option csharp_namespace = "SignallingService.Protos";
+option csharp_namespace = "SignalingService.Protos";
 
 package services;
 
-service Signalling{
+service Signaling{
     // stream for call offers and answers
     rpc CallStream (stream Signal) returns (stream Signal);
 }
