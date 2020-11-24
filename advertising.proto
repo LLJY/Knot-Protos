@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option csharp_namespace = "AdvertisingService.Protos";
+
+package services;
+
+service Advertising{
+    rpc GetAdvertisements (AdvertsList) returns (AdvertsList);
+}
+
+message AdvertsList{
+    repeated Advert advert = 1;
+}
+
+message Advert{
+    string title = 1;
+    string message = 2;
+    string imageUrl = 3;
+}
