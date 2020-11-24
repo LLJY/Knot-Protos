@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "SignallingService.Protos";
+
+package services;
+
+service Signalling{
+    // stream for call offers and answers
+    rpc CallStream (stream Signal) returns (stream Signal);
+}
+// Contract message for multiple signals, the rest are null when not used
+message Signal{
+    // signal offer from caller
+    SignalOffer signalOffer = 1;
+    // answer from callee
+    SignalAnswer signalAnswer = 2;
+    // ICE exchange from caller
+    ICECandidate ICECandidateRequest = 3;
+    // ICE exchange from callee
+    ICECandidate ICECandidateResponse = 4;
+    // receiver user id for easy identification on the backend
+    string recieverId = 5;
+    // information of the listener host
+    SenderInfo senderInfo = 6;
+}
+// sender's message information
+message SenderInfo{
+    // the dude who sent the message
+    string userid = 1;
+    bool isInit =2;
+}
+// Signal sent from caller to callee
+message SignalOffer{
+    string type = 1;
+    string name = 2;
+    string target = 3;
+    string sdp = 4;
+}
+// signal response sent from callee to caller
+message SignalAnswer{
+    string type = 1;
+    string name = 2;
+    string target = 3;
+    string sdp = 4;
+}
+// for exchanging Interactive Connectivity Establishment Information
+message ICECandidate{
+    // is always "new-ice-candidate"
+    string type = 1;
+    // username
+    string target = 2;
+    string candidate = 3;
+}
