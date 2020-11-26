@@ -5,7 +5,7 @@ option csharp_namespace = "AdvertisingService.Protos";
 package services;
 
 service Advertising{
-    rpc GetAdvertisements (AdvertsList) returns (AdvertsList);
+    rpc GetAdvertisements (GetAdvertsRequest) returns (AdvertsList);
     rpc UpsertAdvertisement (Advert) returns (GenericResponse);
     rpc DeleteAdvertisement (DeleteAdvertRequest) returns (GenericResponse);  
 }
@@ -16,7 +16,7 @@ message GenericResponse{
 }
 
 message GetAdvertsRequest{
-    
+
 }
 
 message AdvertsList{
