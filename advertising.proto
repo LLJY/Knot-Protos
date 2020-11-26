@@ -15,6 +15,10 @@ message GenericResponse{
     string errorMessage = 2;
 }
 
+message GetAdvertsRequest{
+    
+}
+
 message AdvertsList{
     repeated Advert advert = 1;
 }
