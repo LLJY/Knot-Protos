@@ -56,8 +56,8 @@ message GetGroupsRequest{
 message GroupInfo{
   string groupId = 1;
   string title = 2;
-  repeated string groupMemberIds = 2;
-  Media groupImage = 3;
+  repeated string groupMemberIds = 3;
+  Media groupImage = 4;
 }
 message SenderInfo{
   // the dude who sent the message
