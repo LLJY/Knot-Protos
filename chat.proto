@@ -43,6 +43,11 @@ message Event{
   Message message = 1;
   GroupCreated groupCreated = 2;
   SenderInfo senderInfo = 3;
+  MessageRead messageRead = 4;
+}
+message MessageRead{
+  string messageId = 1;
+  string messageStatus =2;
 }
 message SenderInfo{
   // the dude who sent the message
