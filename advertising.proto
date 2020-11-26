@@ -6,6 +6,13 @@ package services;
 
 service Advertising{
     rpc GetAdvertisements (AdvertsList) returns (AdvertsList);
+    rpc UpsertAdvertisement (Advert) returns (GenericResponse);
+    rpc DeleteAdvertisement (Advert) returns (GenericResponse);  
+}
+
+message GenericResponse{
+    bool isSuccessful = 1;
+    string errorMessage = 2;
 }
 
 message AdvertsList{
