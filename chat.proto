@@ -78,12 +78,10 @@ message Media{
   uint64 sizeBytes = 3;
 }
 message GroupCreated{
-  string id = 1;
-  // id of the user that recieves the message, null if group
-  string receiverUserId = 2;
+  repeated string groupMemberIds = 1;
+  // the guy who created the group will be the first admin
+  string groupCreator = 2;
+  string title = 3;
   // the time of the message
-  int64 datePostedUnixTimestamp = 8;
-  // id of the group, null if sent to user
-  string groupId = 9;
-  repeated string userIds = 10;
+  int64 dateCreatedUnix = 4;
 }
