@@ -10,6 +10,7 @@ service Chat{
   // get the messages that are unread.
   rpc GetUnreadMessages (NewMessagesRequest) returns (NewMessagesResponse);
   rpc GetAllMessages (AllMessagesRequest) returns (AllMessagesResponse);
+  rpc GetGroupInfo (GetGroupsRequest) returns (GroupInfo);
 }
 // gRPC stream that gives all message requests when sent.
 message UserEventsRequest{
@@ -47,7 +48,16 @@ message Event{
 }
 message MessageRead{
   string messageId = 1;
-  string messageStatus =2;
+  uint32 messageStatus =2;
+}
+message GetGroupsRequest{
+  string groupId = 1;
+}
+message GroupInfo{
+  string groupId = 1;
+  string title = 2;
+  repeated string groupMemberIds = 2;
+  Media groupImage = 3;
 }
 message SenderInfo{
   // the dude who sent the message
