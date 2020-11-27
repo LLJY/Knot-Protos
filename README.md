@@ -441,6 +441,7 @@ Bi-directional streaming from client to client to exchange WebRTC Information.
    "senderInfo":{
       "userid":"RzNObuAzmRhnG9EWVEKFaP9bnSe2"
    }
+}
 // ICERequest
 {
    "ICECandidateRequest":{
