@@ -22,10 +22,11 @@ message Signal{
     string recieverId = 5;
     // information of the listener host
     SenderInfo senderInfo = 6;
+    Leave leave = 7;
 }
 // sender's message information
 message SenderInfo{
-    // the dude who sent the message
+    // the dude who sent the message, leave the id so the client can query for his information
     string userid = 1;
     bool isInit =2;
 }
@@ -33,15 +34,15 @@ message SenderInfo{
 message SignalOffer{
     string type = 1;
     string name = 2;
-    string target = 3;
-    string sdp = 4;
+    // sdp format, we should not touch this on the server
+    string offer = 3;
 }
 // signal response sent from callee to caller
 message SignalAnswer{
     string type = 1;
     string name = 2;
-    string target = 3;
-    string sdp = 4;
+    // sdp format, we should not touch this on the server
+    string answer = 3;
 }
 // for exchanging Interactive Connectivity Establishment Information
 message ICECandidate{
@@ -49,5 +50,10 @@ message ICECandidate{
     string type = 1;
     // username
     string target = 2;
+    // sdp format, we should not touch this on the server
     string candidate = 3;
+}
+// empty message to indicate end of call.
+message Leave{
+    
 }
