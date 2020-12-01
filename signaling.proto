@@ -21,11 +21,11 @@ message Signal{
     // receiver user id for easy identification on the backend
     string recieverId = 5;
     // information of the listener host
-    SenderInfo senderInfo = 6;
+    SenderData senderInfo = 6;
     Leave leave = 7;
 }
 // sender's message information
-message SenderInfo{
+message SenderData{
     // the dude who sent the message, leave the id so the client can query for his information
     string userid = 1;
     bool isInit =2;
