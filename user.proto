@@ -23,6 +23,7 @@ message GetUserInfoResponse{
   string bio = 4;
   // if user does not exist (userid returns null)
   bool isExists = 5;
+  string profilePictureUri = 6;
 }
 
 message UpdateProfileRequest{
