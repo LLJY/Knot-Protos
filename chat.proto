@@ -43,7 +43,6 @@ message AllMessagesResponse{
 message Event{
   Message message = 1;
   GroupCreated groupCreated = 2;
-  SenderInfo senderInfo = 3;
   MessageRead messageRead = 4;
 }
 message MessageRead{
@@ -81,6 +80,7 @@ message Message{
   string groupId = 9;
   // message, if null, contact joined
   string message = 10;
+  SenderInfo senderInfo = 11;
 }
 message Media{
   string mimeType = 1;
