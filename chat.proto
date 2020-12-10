@@ -44,6 +44,7 @@ message Event{
   Message message = 1;
   GroupCreated groupCreated = 2;
   MessageRead messageRead = 4;
+  SenderInfo senderInfo = 3;
 }
 message MessageRead{
   string messageId = 1;
