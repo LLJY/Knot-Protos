@@ -10,10 +10,20 @@ service User {
   rpc GetUserInfo (GetUserInfoRequest) returns (GetUserInfoResponse);
     // executed right after sign up/OTP, allows the user to setup more details like BIO and profile picture, also users can make use of this when updating profiles
   rpc UpdateProfile (UpdateProfileRequest) returns (UpdateProfileResponse);
+
+  rpc GetAllUsers (GetAllUsersRequest) returns (GetAllUsersResponse);
 }
 
 message GetUserInfoRequest{
   string userid = 1;
+}
+
+message GetAllUsersRequest{
+
+}
+
+message GetAllUsersResponse{
+  repeated string userId = 1;
 }
 
 message GetUserInfoResponse{
